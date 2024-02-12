@@ -1,5 +1,5 @@
 # Expert-level SkyBlock minecraft server - docker configuration
-Dockerized Minecraft fabric server with Carpet Sky Additions based on [itzg/docker-minecraft-server](https://github.com/itzg/docker-minecraft-server/) image with RCON web administration. Carpet Sky Additions aims to provide an expert-level SkyBlock style gameplay that depends on players' knowledge of Minecraft mechanics. 
+Dockerized Minecraft fabric server with [Carpet Sky Additions](https://github.com/jsorrell/CarpetSkyAdditions) based on [itzg/docker-minecraft-server](https://github.com/itzg/docker-minecraft-server/) image with RCON web administration. Carpet Sky Additions aims to provide an expert-level SkyBlock style gameplay that depends on players' knowledge of Minecraft mechanics. 
 
 # Installation
 
