@@ -1,0 +1,46 @@
+version: '3.3'
+
+services:
+  web:
+    container_name: "LTP_rcon"
+    image: itzg/rcon
+    build: ./web
+    environment:
+      RWA_USERNAME: "admin"
+      RWA_PASSWORD: "Heslo123"
+      RWA_ADMIN: "TRUE"
+      # is referring to the hostname of 'mc' compose service below
+      RWA_RCON_HOST: mc
+      # needs to match the RCON_PASSWORD configured for the container
+      RWA_RCON_PASSWORD: "frojig%Oph5"
+    ports:
+      - 4326:4326
+      - 4327:4327
+  mc:
+    container_name: "LTP_mcserver"
+    image: itzg/minecraft-server
+    environment:
+      EULA: "TRUE"
+      TYPE: "FABRIC"
+      VERSION: "1.20.1"
+      # password needs to be explicitly set, 
+      # otherwise random one is generated at each startup
+      RCON_PASSWORD: "frojig%Oph5"  
+      RCON_CMDS_STARTUP:  |- # change to the username you want to give OP
+        op Doctor_Dehi 
+      # Server properties
+      MOTD: "Expert-level §l§2SkyBlock§r server"
+      LEVEL_TYPE: "carpetskyadditions:skyblock"
+      INITIAL_ENABLED_PACKS: "carpetskyadditions:skyblock"
+      INITIAL_DISABLED_PACKS: "carpetskyadditions:skyblock_acacia"
+    ports:
+      - 25565:25565 
+    volumes:
+      - mc_data:/data
+      - ./mc/mods:/data/mods
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+
+volumes:
+  mc_data: {}
